@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MVCHomework1.Models.ViewModels.MoneyViewModel>
+
+@{
+    ViewBag.Title = "_MoneyList";
+}
+@{
+    Layout = null;
+}
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>#</th>
+        <th>類別</th>
+        <th>日期</th>
+        <th>金額</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.No</td>
+            <td>@item.Class</td>
+            <td>@item.Date.ToString("yyyy-MM-dd")</td>
+            <td>@item.Money</td>
+        </tr>
+    }
+</table>
