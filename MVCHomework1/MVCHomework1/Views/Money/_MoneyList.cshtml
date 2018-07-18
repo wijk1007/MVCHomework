@@ -1,25 +1,42 @@
-﻿@model IEnumerable<MVCHomework1.Models.ViewModels.MoneyViewModel>
+﻿@model IEnumerable<MVCHomework1.Models.ViewModels.AccountBook>
 
 @{
     ViewBag.Title = "_MoneyList";
 }
 @{
     Layout = null;
+    int no = 0;
 }
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>#</th>
-        <th>類別</th>
-        <th>日期</th>
-        <th>金額</th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<table class="table table-bordered table-hover" style="text-align:center">
+    <thead class="thead-dark bg-primary text-center">
         <tr>
-            <td>@item.No</td>
-            <td>@item.Class</td>
-            <td>@item.Date.ToString("yyyy-MM-dd")</td>
-            <td>@item.Money</td>
+            <th class="text-center">#</th>
+            <th class="text-center">類別</th>
+            <th class="text-center">日期</th>
+            <th class="text-center">金額</th>
         </tr>
-    }
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(no = no + 1)</td>
+                <td>
+                    @DisplayScoresColor(item.Categoryyy)
+                </td>
+                <td>@item.Dateee.ToString("yyyy-MM-dd")</td>
+                <td style="text-align:right">@item.Amounttt.ToString("#,0")</td>
+            </tr>
+
+        }
 </table>
+@helper DisplayScoresColor(int scores)
+{
+    if (scores == 1)
+    {
+        <span class="text-success">收入</span>
+    }
+    else
+    {
+        <span class="text-danger" style="font-weight: bold">支出</span>
+    }
+}

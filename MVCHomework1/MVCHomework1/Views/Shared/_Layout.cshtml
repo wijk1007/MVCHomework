@@ -28,17 +28,16 @@
         </div>
     </div>
 
-    <div class="container body-content" style="margin-top:60px;margin-bottom:20px;">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - <a href="#">SkillTree</a></p>
-        </footer>
-    </div>
+    <div class="container body-content" style="margin-top:60px;margin-bottom:0px;">        
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - <a href="#">SkillTree</a></p>
+            </footer>
+        </div>
 
-    @RenderSection("scripts", required: false)
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
-
+        @RenderSection("scripts", required: false)
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"></script>
 </body>
 </html>

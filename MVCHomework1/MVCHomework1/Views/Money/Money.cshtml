@@ -1,52 +1,63 @@
-﻿@model IEnumerable<MVCHomework1.Models.ViewModels.MoneyViewModel>
-
+﻿@model MVCHomework1.Models.ViewModels.AccountBook
 @{
     ViewBag.Title = "Money";
 }
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+        <div class="well col-sm-12 col-md-12 col-lg-12" style="line-height:20px">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="category" class="col-sm-12 col-md-2 col-lg-2 control-label">類別</label>
+                    <div class="col-sm-12 col-md-10 col-lg-10">
+                    @Html.DropDownList("Categoryyy",new List<SelectListItem>
+                    {
+                        new SelectListItem{ Text="請選擇",Value="-1"},
+                        new SelectListItem{ Text="支出",Value = "0" },
+                        new SelectListItem{ Text="收入", Value = "1" }
+                    }
+                   , new {@class= "form-control" })
+                    @Html.ValidationMessageFor(model => model.Categoryyy, "", new { @class = "text-danger" })
 
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Amounttt, "金額", htmlAttributes: new { @class = "control-label col-sm-12 col-md-2 col-lg-2" })
+                    <div class="col-sm-12 col-md-10 col-lg-10">
+                        @Html.EditorFor(model => model.Amounttt, new { htmlAttributes = new { @class = "form-control digits" } })
+                        @Html.ValidationMessageFor(model => model.Amounttt, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Dateee, "日期", htmlAttributes: new { @class = "control-label col-sm-12 col-md-2 col-lg-2" })
+                    <div class="col-sm-12 col-md-10 col-lg-10">
+                        @Html.EditorFor(model => model.Dateee, new { htmlAttributes = new { @class = "form-control dateISO" } })
+                        @Html.ValidationMessageFor(model => model.Dateee, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-<div class="well">
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="category" class="col-sm-2 control-label">類別</label>
-            <div class="col-sm-10">
-                <select id="category" class="form-control">
-                    <option value="" selected>請選擇</option>
-                    <option>支出</option>
-                    <option>收入</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Remarkkk, "備註", htmlAttributes: new { @class = "control-label col-sm-12 col-md-2 col-lg-2" })
+                    <div class="col-sm-12 col-md-10 col-lg-10">
+                        @Html.EditorFor(model => model.Remarkkk, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Remarkkk, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                        <input type="submit" value="送出" class="btn btn-default btn-warning" style="margin-top:10px"/>
+                    </div>
+                </div>
+
+            </form>
         </div>
-        <div class="form-group">
-            <label for="money" class="col-sm-2 control-label">金額</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="money" placeholder="金額">
-            </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Action("_MoneyList", "Money")
         </div>
-        <div class="form-group">
-            <label for="date" class="col-sm-2 control-label">日期</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="date" placeholder="日期">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="description" class="col-sm-2 control-label">備註</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="description">
-                </textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-8 col-sm-4">
-                <button type="submit" class="btn btn-default">送出</button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        @Html.Action("_MoneyList", "Money")
     </div>
-</div>
 
-
+}
